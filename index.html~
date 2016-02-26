@@ -228,6 +228,32 @@
                 <input class="form-control" type="text" ng-model="itemText" size="30" placeholder="Добавить">
                 <input class="btn btn-primary" type="submit" value="Ок">
             </form>
+
+
+
+
+ <table class="table table-striped">
+            	<tbody>
+            		<tr class="row" ng-repeat="item in items">
+                        <!--Используйте ng-repeat чтобы показать набор. Здеысь для каждого элемента item,
+                        AngularJS создаст копию шаблона. Когда объекты будут добавлены в набор items
+                        ng-repeat автоматически добавит новые элементы в DOM. Точно так же,
+                        при удалении объектов из items соответствующие элементы удалятся. Это одна из наиболее универсальных директив AngularJS.-->
+                        <td><input class="checkbox-inline" type="checkbox" ng-model="item.done"></td>
+                        <!--Связывает форму с моделью. Это значит, что любые изменения в форме обновят данные модели, а при изменении модели обновятся элементы формы.
+                        AngularJS автоматически копирует состояние чекбокса в item.done.
+                        И наоборот, если обновится item.done чекбокс изменится соответствующим образом.-->
+                        <td><span  class="done-{{item.done}}">{{item.text}}</span></td>
+                        <!--Когда item.done становится true, то CSS-селектор становится done-true и к нему затем применяется зачеркивание.-->
+                    </tr>
+                </tbody>
+            </table>
+            <form ng-submit="addItem()">
+                <!--Перехватывает событие отправки формы и вместо этого вызывает addItem.
+                В этом методе мы читаем свойство itemText и вставляем его в набор items.-->
+                <input class="form-control" type="text" ng-model="itemText" size="30" placeholder="Добавить">
+                <input class="btn btn-primary" type="submit" value="Ок">
+            </form>
         </div>
 
 

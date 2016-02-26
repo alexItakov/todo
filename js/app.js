@@ -1,4 +1,4 @@
- function ListCtrl($scope) {
+ function ListCtrl($scope) { 
  	 //$scope содержит данные модели. Это связующее звено между контроллером и видом.
     //$scope всего лишь один из сервисов, внедренных в контроллер.
     
@@ -15,6 +15,7 @@
 
     $scope.addItem = function () { 
     	$scope.items.push({ text: $scope.itemText, done: false });
+        console.log($scope.itemText);
  		//Неизменяемый метод Array.push. Его вызов обновляет модель, которая затем обновляет вид посредством связывания данных.
         //ng-repeat связан с этим массивом. Он автоматически проходится по массиву и добавляет новый DOM-элемент в вид. 
 
