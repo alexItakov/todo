@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" ng-app> 
+<head>  
+	<meta charset="UTF-8">
+	<title>ToDo.App</title>
+	<link rel="stylesheet" type="text/css" href="css/resets.css">
+	<style>
+
+		@font-face {
+			font-family: "Impact";
+			src: url("fonts/impact_[allfont.ru].ttf");
+
+			font-style: normal;
+			font-weight: normal;
+		}
+		
+		@font-face {
+			font-family: "Ristretto Bold";
+			src: url("fonts/Ristretto_Pro/RistrettoPro-Bold.otf");
+
+			font-style: normal;
+			font-weight: normal;
+		}
+
+		@font-face {
+			font-family: "Ristretto Medium";
+			src: url("fonts/Ristretto_Pro/RistrettoPro-Medium.otf");
+
+			font-style: normal;
+			font-weight: normal;
+		}
+
+
+		@font-face {
+			font-family: 'rmt';
+			src: url('fonts/rmtyperighter.eot');
+			src: local('rmtyperighter'), url('fonts/rmtyperighter.woff') format('woff'), url('fonts/rmtyperighter.ttf') format('truetype');
+		}
+
+		@font-face {
+			font-family: "Chop";
+			src: url("fonts/kellyslab/kellyslab.ttf");
+
+
+
+
+			font-style: normal;
+			font-weight: normal;
+		}
+
+
+		html {
+
+			height: 100%;
+			background: url(main_index_img/html_bg2.png);
+
+		}
+
+
+		html {height: 100%;}
+		body {
+			height: 100%;
+			margin: 0 auto;
+			width: 100%; 
+			max-width: 900px;
+			-webkit-box-shadow: 0px 3px 17px 5px rgba(0,0,0,0.75);
+			-moz-box-shadow: 0px 3px 17px 5px rgba(0,0,0,0.75);
+			box-shadow: 0px 3px 17px 5px rgba(0,0,0,0.75);
+			background: url(main_index_img/body2_bg.png);
+			position: relative;
+			padding: 20px;
+			border: 1px solid #675e4d;
+		}
+
+		#body_container {
+			background: url(main_index_img/body_bg.png);
+			height: 100%;
+			width: 100%;
+			position: relative;
+			-webkit-box-shadow: 0px 2px 5px 3px rgba(56,46,34,1);
+			-moz-box-shadow: 0px 2px 5px 3px rgba(56,46,34,1);
+			box-shadow: 0px 2px 5px 3px rgba(56,46,34,1);
+			padding: 10px;
+
+
+
+		}
+
+		#border_div {
+			border: 1px solid #dccea9;
+			height: 100%;
+			width: 100%;
+
+		}
+
+		#content {
+			max-width: 370px;
+			width: 100%;
+			position: relative;
+			margin: auto;
+			padding: 10px;
+			top: 15%;
+		}
+		p {
+			font-size: 20px;
+			color: #635D5D;
+			font-family: 'Ristretto Medium';
+			text-align: center;
+
+			
+			position: relative;
+			
+			line-height: 20px;
+
+		}
+
+		.done-true {
+			/*Добавляет зачеркивание к выполненому делу.*/
+			text-decoration: line-through;
+			color: grey;
+
+			font-size: 20px;
+			font-family: 'Chop';
+
+
+		}
+		.done-false {
+			/*Делает красным не выполненное дело*/
+			text-decoration: underline;
+			color: #4F2C03;
+
+			font-size: 20px;
+			font-family: 'Chop';
+			
+
+		}
+
+		#content { 
+			background: url(main_index_img/sruare_grid.png);
+			
+		}
+
+
+		h1 {
+
+			font-size: 30px;
+			color: #635D5D;
+			font-family: 'Impact';
+			text-align: center;
+			margin-top: 30px;
+			margin-bottom: 50px;
+
+			
+			position: relative;
+			line-height: 20px;
+
+		}
+
+		.h4 {
+
+			font-size: 30px;
+			color: #635D5D;
+			font-family: 'Ristretto Medium';
+			text-align: center;
+
+			
+			position: relative;
+			
+			line-height: 20px;
+			margin-bottom: 30px;
+		}
+
+		.checkbox-inline {
+
+		}
+
+		.row {
+			height: 30px;
+		}
+
+		.table {
+			margin-top: 10px;
+		}
+
+		.form-control {
+			height: 30px;
+		}
+
+		
+		
+
+	</style>
+</head>
+
+<body>
+	<div id="body_container">
+
+
+		
+		<div id="border_div">
+			<div id="content">
+
+				<h1>To Do about anythink</h1>
+				<div class="panel" ng-controller="ListCtrl">
+					<!--Поведение содержимого в рамках этого элемента будет управляться с помощью класса listCtrl, определенного в list.js.-->
+					<span class="h4">Осталось {{remain()}} из {{items.length}}</span>
+            <!--Конструкция {{ }} указывает на место связывания данных в HTML.
+            AngularJS автоматически обновит это место, если функция remain() вернет значение, отличное от предыдущего-->
+            <table class="table table-striped">
+            	<tbody>
+            		<tr class="row" ng-repeat="item in items">
+                        <!--Используйте ng-repeat чтобы показать набор. Здеысь для каждого элемента item,
+                        AngularJS создаст копию шаблона. Когда объекты будут добавлены в набор items
+                        ng-repeat автоматически добавит новые элементы в DOM. Точно так же,
+                        при удалении объектов из items соответствующие элементы удалятся. Это одна из наиболее универсальных директив AngularJS.-->
+                        <td><input class="checkbox-inline" type="checkbox" ng-model="item.done"></td>
+                        <!--Связывает форму с моделью. Это значит, что любые изменения в форме обновят данные модели, а при изменении модели обновятся элементы формы.
+                        AngularJS автоматически копирует состояние чекбокса в item.done.
+                        И наоборот, если обновится item.done чекбокс изменится соответствующим образом.-->
+                        <td><span  class="done-{{item.done}}">{{item.text}}</span></td>
+                        <!--Когда item.done становится true, то CSS-селектор становится done-true и к нему затем применяется зачеркивание.-->
+                    </tr>
+                </tbody>
+            </table>
+            <form ng-submit="addItem()">
+                <!--Перехватывает событие отправки формы и вместо этого вызывает addItem.
+                В этом методе мы читаем свойство itemText и вставляем его в набор items.-->
+                <input class="form-control" type="text" ng-model="itemText" size="30" placeholder="Добавить">
+                <input class="btn btn-primary" type="submit" value="Ок">
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
+</div>
+
+
+<script src="js/angular.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/app.js"></script>
+
+
+
+</body>
+</html>
