@@ -1,6 +1,6 @@
 ### My Angular TODO app
 
-##[View](http://alexwhoami.github.io/todo/)
+##[View](http://alextitakov.github.io/todo/)
 
 
 
